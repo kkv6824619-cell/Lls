@@ -1,0 +1,237 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private authenticated studio profile for a KathaVani creator.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 254
+        },
+        "photoURL": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "displayName", "email", "createdAt", "updatedAt"]
+    },
+    "StudioProject": {
+      "title": "StudioProject",
+      "description": "A Telugu cinema script and production configuration owned by a creator.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "scriptText": {
+          "type": "string",
+          "maxLength": 180000
+        },
+        "visualStyle": {
+          "type": "string",
+          "enum": [
+            "cinematic-cinema",
+            "mythological-epic",
+            "illustrated-tale",
+            "noir-thriller",
+            "stylized-anime"
+          ]
+        },
+        "voiceProfile": {
+          "type": "string",
+          "enum": ["Kore", "Puck", "Charon", "Aoede", "Fenrir"]
+        },
+        "captionStyle": {
+          "type": "string",
+          "enum": ["cinema-gold", "clean-subtitle", "bold-highlight"]
+        },
+        "sceneCount": {
+          "type": "number"
+        },
+        "totalDurationSec": {
+          "type": "number"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "storyboarded", "rendered", "archived"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "title",
+        "scriptText",
+        "visualStyle",
+        "voiceProfile",
+        "captionStyle",
+        "sceneCount",
+        "totalDurationSec",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "StoryboardScene": {
+      "title": "StoryboardScene",
+      "description": "A single directed storyboard clip within a project subcollection.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "projectId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "orderIndex": {
+          "type": "number"
+        },
+        "titleTe": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "speaker": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "dialogueTe": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        },
+        "captionLines": {
+          "type": "array"
+        },
+        "visualPromptEn": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "cameraMotion": {
+          "type": "string",
+          "enum": [
+            "zoom-in",
+            "zoom-out",
+            "pan-left",
+            "pan-right",
+            "pan-up",
+            "pan-down"
+          ]
+        },
+        "mood": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "voiceDirection": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "durationSec": {
+          "type": "number"
+        },
+        "staticImagePath": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "projectId",
+        "ownerId",
+        "orderIndex",
+        "titleTe",
+        "speaker",
+        "dialogueTe",
+        "captionLines",
+        "visualPromptEn",
+        "cameraMotion",
+        "mood",
+        "voiceDirection",
+        "durationSec",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private user account metadata strictly accessible only to the owning user."
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/StudioProject" },
+      "description": "KathaVani Telugu script and production projects owned by authenticated creators."
+    },
+    "/projects/{projectId}/scenes/{sceneId}": {
+      "schema": { "$ref": "#/entities/StoryboardScene" },
+      "description": "Structured storyboard scenes belonging to a parent studio project."
+    }
+  }
+}

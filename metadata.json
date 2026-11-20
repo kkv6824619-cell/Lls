@@ -1,0 +1,6 @@
+{
+  "name": "KathaVani (కథావాణి)",
+  "description": "Dark Tollywood-cinema & saffron-gold AI Telugu video storyboard studio with 10,000-word script editor, Gemini multi-chunk scene direction, 16:9 AI artwork, expressive Telugu narration, live canvas cinema player, and client-side video export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

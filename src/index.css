@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "Noto Sans Telugu", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Telugu", system-ui, sans-serif;
+  --font-telugu: "Noto Sans Telugu", "Plus Jakarta Sans", system-ui, sans-serif;
+  --color-obsidian: #09080A;
+  --color-stage: #110F14;
+  --color-surface: #17141B;
+  --color-surface-elevated: #1F1B24;
+  --color-hairline: #2A2431;
+  --color-saffron: #F29F05;
+  --color-saffron-soft: #FBBF24;
+  --color-ivory: #F5F0E6;
+  --color-parchment: #B5AC9E;
+  --color-ash: #7B7369;
+}
+
+@layer base {
+  html,
+  body {
+    background-color: #09080A;
+    color: #F5F0E6;
+    font-family: var(--font-sans);
+    letter-spacing: 0.008em;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-telugu {
+    font-family: var(--font-telugu);
+  }
+
+  *:focus-visible {
+    outline: 2px solid #F29F05;
+    outline-offset: 2px;
+  }
+}
+
+/* Custom Cinema Dark Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0B10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2C2634;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #42384E;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
